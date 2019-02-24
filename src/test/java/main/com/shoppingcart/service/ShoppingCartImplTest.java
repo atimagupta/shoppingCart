@@ -55,5 +55,15 @@ public class ShoppingCartImplTest {
         assertEquals("Dove Soap", cart.getCart().get(0).getProductName());
         assertEquals(39.99, cart.getCart().get(0).getProductPrice().doubleValue(), 0);
     }
+
+    @Test
+    public void test_Step2() {
+        Product product = new Product("Dove Soap", 39.99);
+        when(shoppingCart.addToCart(product, 5)).thenReturn(199.95);
+        when(shoppingCart.addToCart(product, 3)).thenReturn(319.92);
+        shoppingCart.addToCart(product, 5);
+        Double total = shoppingCart.addToCart(product, 3);
+        assertEquals(319.92, total.doubleValue(), 0);
+    }
 }
 
